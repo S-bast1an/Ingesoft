@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li class="breadcrumb-item">Secundaria</li>
+            <li class="breadcrumb-item active">{{ titulo }}</li>
+        </ol>
+    </nav>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-white">
+            <h2 class="mb-0">{{ titulo }}</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="content-area">
+                        <!-- Aquí irá el contenido específico del tema -->
+                        <h3>Contenido de {{ titulo }}</h3>
+                        <p>El contenido específico para este tema se cargará aquí.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Tu Progreso</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="progress mb-3" style="height: 20px;">
+                                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" 
+                                     role="progressbar" 
+                                     style="width: 0%" 
+                                     aria-valuenow="0" 
+                                     aria-valuemin="0" 
+                                     aria-valuemax="100">0%</div>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-success">
+                                    <i class="fas fa-play me-2"></i>Comenzar Lección
+                                </button>
+                                <button class="btn btn-outline-success">
+                                    <i class="fas fa-book me-2"></i>Material de Apoyo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

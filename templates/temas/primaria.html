@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li class="breadcrumb-item">Primaria</li>
+            <li class="breadcrumb-item active">{{ titulo }}</li>
+        </ol>
+    </nav>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-white">
+            <h2 class="mb-0">{{ titulo }}</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="content-area">
+                        {% if operaciones %}
+                        <div class="row g-4">
+                            {% for op_key, op_name in operaciones.items() %}
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            {% if op_key == 'suma' %}
+                                            <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                                                <i class="fas fa-plus fa-2x text-primary"></i>
+                                            </div>
+                                            {% elif op_key == 'resta' %}
+                                            <div class="bg-danger bg-opacity-10 p-3 rounded-circle me-3">
+                                                <i class="fas fa-minus fa-2x text-danger"></i>
+                                            </div>
+                                            {% elif op_key == 'multiplicacion' %}
+                                            <div class="bg-success bg-opacity-10 p-3 rounded-circle me-3">
+                                                <i class="fas fa-times fa-2x text-success"></i>
+                                            </div>
+                                            {% else %}
+                                            <div class="bg-warning bg-opacity-10 p-3 rounded-circle me-3">
+                                                <i class="fas fa-divide fa-2x text-warning"></i>
+                                            </div>
+                                            {% endif %}
+                                            <h3 class="card-title mb-0">{{ op_name }}</h3>
+                                        </div>
+                                        <p class="card-text text-muted">
+                                            {% if op_key == 'suma' %}
+                                            Aprende a sumar números naturales y resuelve problemas de la vida cotidiana.
+                                            {% elif op_key == 'resta' %}
+                                            Domina la resta y entiende su relación con la suma.
+                                            {% elif op_key == 'multiplicacion' %}
+                                            Descubre la multiplicación como una suma repetida.
+                                            {% else %}
+                                            Comprende la división como repartición en partes iguales.
+                                            {% endif %}
+                                        </p>
+                                        <div class="mt-3">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="small text-muted">
+                                                    <i class="fas fa-clock me-1"></i>30 minutos
+                                                </div>
+                                                <div class="small text-muted">
+                                                    <i class="fas fa-star me-1"></i>Nivel básico
+                                                </div>
+                                            </div>
+                                            <div class="progress mt-2" style="height: 5px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="d-grid mt-3">
+                                            {% if op_key == 'suma' %}
+                                            <a href="{{ url_for('ejercicios_suma') }}" class="btn btn-primary">
+                                                <i class="fas fa-play me-2"></i>Comenzar
+                                            </a>
+                                            {% elif op_key == 'resta' %}
+                                            <a href="{{ url_for('ejercicios_resta') }}" class="btn btn-danger">
+                                                <i class="fas fa-play me-2"></i>Comenzar
+                                            </a>
+                                            {% else %}
+                                            <button class="btn btn-secondary" disabled>
+                                                <i class="fas fa-lock me-2"></i>Próximamente
+                                            </button>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <div class="content-area">
+                            <h3>Contenido de {{ titulo }}</h3>
+                            <p>El contenido específico para este tema se cargará aquí.</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Tu Progreso</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="progress mb-3" style="height: 20px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                     role="progressbar" 
+                                     style="width: 0%" 
+                                     aria-valuenow="0" 
+                                     aria-valuemin="0" 
+                                     aria-valuemax="100">0%</div>
+                            </div>
+                            {% if operaciones %}
+                            <div class="list-group list-group-flush mb-3">
+                                {% for op_key, op_name in operaciones.items() %}
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{ op_name }}
+                                    <span class="badge bg-secondary rounded-pill">Pendiente</span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-success">
+                                    <i class="fas fa-play me-2"></i>Comenzar Lección
+                                </button>
+                                <button class="btn btn-outline-primary">
+                                    <i class="fas fa-book me-2"></i>Material de Apoyo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if operaciones %}
+                    <div class="card mt-4">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">Recursos Adicionales</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group list-group-flush">
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <i class="fas fa-video me-2"></i>Videos explicativos
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <i class="fas fa-file-pdf me-2"></i>Fichas de ejercicios
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <i class="fas fa-gamepad me-2"></i>Juegos matemáticos
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <i class="fas fa-question-circle me-2"></i>Preguntas frecuentes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

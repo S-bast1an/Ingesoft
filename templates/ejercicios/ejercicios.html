@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li class="breadcrumb-item">Ejercicios</li>
+            <li class="breadcrumb-item active">{{ titulo }}</li>
+        </ol>
+    </nav>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">{{ titulo }}</h2>
+            <div>
+                <button class="btn btn-outline-info btn-sm me-2">
+                    <i class="fas fa-filter me-1"></i>Filtrar
+                </button>
+                {% if tipo == 'ejemplos' %}
+                <button class="btn btn-info btn-sm">
+                    <i class="fas fa-search me-1"></i>Buscar Ejemplo
+                </button>
+                {% elif tipo == 'interactivos' %}
+                <button class="btn btn-info btn-sm">
+                    <i class="fas fa-plus me-1"></i>Nuevo Ejercicio
+                </button>
+                {% else %}
+                <button class="btn btn-info btn-sm">
+                    <i class="fas fa-chart-line me-1"></i>Ver Reporte
+                </button>
+                {% endif %}
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="content-area">
+                        {% if tipo == 'ejemplos' %}
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Selecciona un tema para ver ejemplos detallados con explicaciones paso a paso.
+                        </div>
+                        <!-- Lista de ejemplos disponibles -->
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Ejemplo de Suma de Fracciones</h5>
+                                <p class="mb-1">Aprende a sumar fracciones con el mismo denominador.</p>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <h5 class="mb-1">Ejemplo de Ecuaciones Lineales</h5>
+                                <p class="mb-1">Resuelve ecuaciones de primer grado paso a paso.</p>
+                            </a>
+                        </div>
+
+                        {% elif tipo == 'interactivos' %}
+                        <div class="alert alert-success">
+                            <i class="fas fa-lightbulb me-2"></i>
+                            Practica con ejercicios interactivos que se adaptan a tu nivel.
+                        </div>
+                        <!-- Ejercicios interactivos -->
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5>Ejercicio 1: Multiplicación</h5>
+                                <p>Resuelve: 24 × 15 = ?</p>
+                                <input type="number" class="form-control mb-2" placeholder="Tu respuesta">
+                                <button class="btn btn-primary">Verificar</button>
+                            </div>
+                        </div>
+
+                        {% else %}
+                        <div class="alert alert-warning">
+                            <i class="fas fa-chart-bar me-2"></i>
+                            Revisa tu progreso y las áreas donde necesitas más práctica.
+                        </div>
+                        <!-- Gráficos de evaluación -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>Resumen de Rendimiento</h5>
+                                <div class="progress mb-3">
+                                    <div class="progress-bar bg-success" style="width: 75%">
+                                        Aciertos: 75%
+                                    </div>
+                                </div>
+                                <h6>Temas dominados:</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i>Sumas y Restas</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i>Multiplicación</li>
+                                </ul>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">Recursos Adicionales</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group list-group-flush">
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <i class="fas fa-video me-2"></i>Videos Tutoriales
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <i class="fas fa-file-pdf me-2"></i>Material PDF
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <i class="fas fa-question-circle me-2"></i>Preguntas Frecuentes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

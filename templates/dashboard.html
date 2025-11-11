@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Encabezado con estadísticas rápidas -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-5 fw-bold mb-4">
+                <i class="fas fa-tachometer-alt me-2"></i>Dashboard de Aprendizaje
+            </h1>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-start border-primary border-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-1">Tiempo de Estudio</h6>
+                            <h3 class="mb-0">2.5 horas</h3>
+                        </div>
+                        <div class="bg-primary bg-opacity-10 p-3 rounded">
+                            <i class="fas fa-clock fa-2x text-primary"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-start border-success border-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-1">Ejercicios Completados</h6>
+                            <h3 class="mb-0">24</h3>
+                        </div>
+                        <div class="bg-success bg-opacity-10 p-3 rounded">
+                            <i class="fas fa-check-circle fa-2x text-success"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-start border-info border-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-1">Racha Actual</h6>
+                            <h3 class="mb-0">5 días</h3>
+                        </div>
+                        <div class="bg-info bg-opacity-10 p-3 rounded">
+                            <i class="fas fa-fire fa-2x text-info"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Progreso -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h4 class="mb-0"><i class="fas fa-chart-line me-2"></i>Tu Progreso</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5>Matemáticas nivel primaria</h5>
+                            <span class="badge bg-primary rounded-pill">75%</span>
+                        </div>
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                 role="progressbar" 
+                                 style="width: 75%" 
+                                 aria-valuenow="75" 
+                                 aria-valuemin="0" 
+                                 aria-valuemax="100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5>Matemáticas nivel secundaria</h5>
+                            <span class="badge bg-success rounded-pill">45%</span>
+                        </div>
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" 
+                                 role="progressbar" 
+                                 style="width: 45%" 
+                                 aria-valuenow="45" 
+                                 aria-valuemin="0" 
+                                 aria-valuemax="100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido Principal -->
+    <div class="row">
+        <!-- Matemáticas Primaria -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">
+                        <i class="fas fa-square-root-alt text-primary me-2"></i>
+                        Matemáticas Primaria
+                    </h4>
+                    <button class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-play me-1"></i>Continuar
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <a href="{{ url_for('primaria', tema='operaciones-basicas') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            Operaciones básicas
+                            <span class="badge bg-success rounded-pill">Completado</span>
+                        </a>
+                        <a href="{{ url_for('primaria', tema='fracciones-decimales') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            Fracciones y decimales
+                            <span class="badge bg-warning rounded-pill">En progreso</span>
+                        </a>
+                        <a href="{{ url_for('primaria', tema='numeros-naturales') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            Números naturales
+                            <span class="badge bg-secondary rounded-pill">Pendiente</span>
+                        </a>
+                        <a href="{{ url_for('primaria', tema='tablas-multiplicar') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            Tablas de multiplicar
+                            <span class="badge bg-secondary rounded-pill">Pendiente</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Matemáticas Secundaria -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">
+                        <i class="fas fa-calculator text-success me-2"></i>
+                        Matemáticas Secundaria
+                    </h4>
+                    <button class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-play me-1"></i>Continuar
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <a href="{{ url_for('secundaria', tema='algebra') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            Álgebra
+                            <span class="badge bg-success rounded-pill">Completado</span>
+                        </a>
+                        <a href="{{ url_for('secundaria', tema='geometria') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            Geometría
+                            <span class="badge bg-warning rounded-pill">En progreso</span>
+                        </a>
+                        <a href="{{ url_for('secundaria', tema='trigonometria') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            Trigonometría
+                            <span class="badge bg-secondary rounded-pill">Pendiente</span>
+                        </a>
+                        <a href="{{ url_for('secundaria', tema='estadistica') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            Estadística básica
+                            <span class="badge bg-secondary rounded-pill">Pendiente</span>
+                        </a>
+                        <a href="{{ url_for('secundaria', tema='funciones') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            Funciones y gráficas
+                            <span class="badge bg-secondary rounded-pill">Pendiente</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicios Prácticos -->
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">
+                        <i class="fas fa-book-open text-info me-2"></i>
+                        Ejercicios Prácticos
+                    </h4>
+                    <div>
+                        <button class="btn btn-outline-info btn-sm me-2">
+                            <i class="fas fa-filter me-1"></i>Filtrar
+                        </button>
+                        <button class="btn btn-info btn-sm">
+                            <i class="fas fa-plus me-1"></i>Nuevo Ejercicio
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card border border-light h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ejemplos detallados</h5>
+                                    <p class="text-muted">Accede a ejemplos paso a paso de cada tema</p>
+                                    <div class="d-grid">
+                                        <a href="{{ url_for('ejercicios', tipo='ejemplos') }}" class="btn btn-outline-primary">Ver ejemplos</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border border-light h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ejercicios interactivos</h5>
+                                    <p class="text-muted">Practica con ejercicios que se adaptan a tu nivel</p>
+                                    <div class="d-grid">
+                                        <a href="{{ url_for('ejercicios', tipo='interactivos') }}" class="btn btn-outline-success">Comenzar práctica</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border border-light h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Evaluación continua</h5>
+                                    <p class="text-muted">Revisa tu progreso y áreas de mejora</p>
+                                    <div class="d-grid">
+                                        <a href="{{ url_for('ejercicios', tipo='evaluacion') }}" class="btn btn-outline-info">Ver evaluación</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
